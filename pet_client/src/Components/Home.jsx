@@ -1,10 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate  } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const Home = () => {
   const [data, showData] = useState([]);
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   useEffect(() => {
     getData();
   }, []);
@@ -15,14 +15,52 @@ export const Home = () => {
     });
   };
 
+  // const city = () => {
+  //   handleSort("City", 1);
+  // }
+  // const city1 = () => {
+  //   handleSort("City", -1);
+  // }
+  // const verify = 
+  // const verify1 = 
+  const cost = () => {
+    data.sort(function (a, b) {
+      return b.Costperday - a.Costperday;
+    });
+    showData([...data]);
+  };
+  const cost1 = () => {
+    data.sort(function (a, b) {
+      return a.Costperday - b.Costperday;
+    });
+    showData([...data]);
+  };
+  const rating = () => {
+    data.sort(function (a, b) {
+      return b.Rating - a.Rating;
+    });
+    showData([...data]);
+  };
+  const rating1 = () => {
+    data.sort(function (a, b) {
+      return a.Rating - b.Rating;
+    });
+    showData([...data]);
+  };
+
+
   return (
     <>
       <div className="Container">
         <div className="Sortingbuttons">
-          <button>Sort by City</button>
-          <button>Sort by Verified</button>
-          <button>Sort by Cost</button>
-          <button>Sort by Rating</button>
+          <button >Sort by City (A_Z)</button>
+          <button >Sort by City (Z_A)</button>
+          <button >Sort by Verified (A_Z)</button>
+          <button >Sort by Verified (Z_A)</button>
+          <button onClick={cost}>Sort by Cost high to low</button>
+          <button onClick={cost1}>Sort by Cost low to high</button>
+          <button onClick={rating}>Sort by Rating high to Low</button>
+          <button onClick={rating1}>Sort by Rating Low to high</button>
         </div>
 
         <table className="table" border="1">
@@ -39,7 +77,7 @@ export const Home = () => {
             </tr>
           </thead>
           <tbody>
-            {data.map((entities, index) => {
+            {data.map((entities) => {
               return (
                 <tr key={entities.id} className="details">
                   <td>{entities.id}</td>
@@ -52,7 +90,7 @@ export const Home = () => {
                   <td>{entities.Rating}</td>
                   <td
                     onClick={() => {
-                      navigate(`/listing/:${entities.id}`);
+                      navigate(`/listing/${entities.id}`);
                     }}
                   >
                     {"Details"}

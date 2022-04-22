@@ -8,8 +8,8 @@ export const Routers = () => {
     <>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/listing/create" element={<Entity />} />
-        <Route path="/listing/:id" element={<PetBoardingDetails />} />
+        <Route path="/listing/create" element={<Entity/>} />
+        <Route path="/listing/:id" element={<PetBoardingDetails/>} />
       </Routes>
     </>
   );
